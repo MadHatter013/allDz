@@ -27,6 +27,7 @@ public class Category {
         this.product = product;
     }
 
+
     @Override
     public String toString() {
         return "Category{" +

@@ -35,7 +35,10 @@ public class User {
 
     public void authentication(String login, String password) {
         if (this.login == login.intern() & this.password == password.intern()){
-            System.out.println("Ауторизация успешна.");
-        }else System.exit(1);
+            System.out.println("Login successful.");
+        }else {
+            System.out.println("Wrong login or password.");
+            System.exit(0);
+        }
     }
 }
