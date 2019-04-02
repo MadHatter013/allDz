@@ -27,6 +27,16 @@ public class Category {
         this.product = product;
     }
 
+    public void showCatalog() {
+        for (int i = 0; i < product.length; i++) {
+            System.out.print(i+1 + ": ");
+            product[i].showProduct();
+        }
+    }
+
+    public Product getSpecificArrayElement(int position){
+        return product[position];
+    }
 
     @Override
     public String toString() {

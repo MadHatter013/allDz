@@ -21,6 +21,10 @@ public class User {
         return userBasket;
     }
 
+    public Product[] getProductUserBasket() {
+        return userBasket.getPurchasedGoods();
+    }
+
     public void setLogin(String login) {
         this.login = login;
     }
@@ -34,9 +38,9 @@ public class User {
     }
 
     public void authentication(String login, String password) {
-        if (this.login == login.intern() & this.password == password.intern()){
+        if (this.login == login.intern() & this.password == password.intern()) {
             System.out.println("Login successful.");
-        }else {
+        } else {
             System.out.println("Wrong login or password.");
             System.exit(0);
         }

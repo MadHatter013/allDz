@@ -33,4 +33,8 @@ public class Product {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    public void showProduct(){
+        System.out.println("Товар: " + this.getName() +  "\n Цена: " + this.getPrise() + " Рейтинг: " + this.getRating());
+    }
 }

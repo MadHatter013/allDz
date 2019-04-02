@@ -1,7 +1,10 @@
 package store;
 
 public class Basket {
-   private Product[] purchasedGoods;
+    private Product[] purchasedGoods;
+
+    public Basket() {
+    }
 
     public Basket(Product[] purchasedGoods) {
         this.purchasedGoods = purchasedGoods;
@@ -14,6 +17,13 @@ public class Basket {
 
     public void setPurchasedGoods(Product[] purchasedGoods) {
         this.purchasedGoods = purchasedGoods;
+    }
+
+    public void showPurchasedGoods(){
+        for (Product p: purchasedGoods) {
+            p.showProduct();
+            System.out.println();
+        }
     }
 
 }
