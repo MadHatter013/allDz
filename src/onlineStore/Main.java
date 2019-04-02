@@ -1,4 +1,4 @@
-package store;
+package onlineStore;
 
 import java.util.Arrays;
 import java.util.Scanner;
