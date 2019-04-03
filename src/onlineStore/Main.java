@@ -3,9 +3,10 @@ package onlineStore;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         String login = null, password = null;
         Basket basket = new Basket();
         Product[] basketProduct1 = new Product[0];
@@ -26,7 +27,7 @@ public class Main {
         Category books = new Category("Electronics", productBooks);
 
 
-        Scanner reader = new Scanner(System.in);
+
         User user = new User("Sten", "Li");
         System.out.println("Enter login(Sten):");
         if (reader.hasNextLine()) {
