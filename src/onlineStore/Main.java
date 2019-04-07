@@ -23,9 +23,13 @@ public class Main {
                 new Product("Biology", 120, 4.0),
                 new Product("Economics", 200, 8.3),
         };
-        Category electronics = new Category("Electronics", productElectronics);
-        Category books = new Category("Electronics", productBooks);
+        Category[] productCategory = new Category[2];
 
+
+        productCategory[0] = new Category("Electronics", productElectronics);
+        productCategory[1] = new Category("Books", productBooks);
+//        Category electronics = new Category("Electronics", productElectronics);
+//        Category books = new Category("Electronics", productBooks);
 
 
         User user = new User("Sten", "Li");
@@ -51,53 +55,59 @@ public class Main {
             if (reader.hasNextInt()) {
                 choise = reader.nextInt();
             }
-//            while (b) {
 
             switch (choise) {
                 case 1: {
-                    electronics.showCatalog();
-                    System.out.println();
-                    books.showCatalog();
+                    for (int i = 0; i < productCategory.length; i++) {
+                        productCategory[i].showCatalog();
+                    }
+//                    electronics.showCatalog();
+//                    System.out.println();
+//                    books.showCatalog();
                     break;
                 }
                 case 2: {
                     System.out.println("Choose the catalog: \n 1) Electronics \n 2) Books");
                     choise = reader.nextInt();
-                    switch (choise) {
-                        case 1: {
-                            electronics.showCatalog();
-                            break;
-                        }
-                        case 2: {
-                            books.showCatalog();
-                            break;
-                        }
-                    }
+                    productCategory[choise-1].showCatalog();
+//                    switch (choise) {
+//                        case 1: {
+//                            electronics.showCatalog();
+//                            break;
+//                        }
+//                        case 2: {
+//                            books.showCatalog();
+//                            break;
+//                        }
+//                    }
                     break;
                 }
                 case 3: {
-                    System.out.println("Choose the catalog for purchase: \n 1) Electronics \n 2) Books");
+                    System.out.println("Choose the catalog for purchase: ");
+                    for (int i = 0; i < productCategory.length; i++) {
+                        System.out.println(i + 1 + ") " + productCategory[i].getName());
+                    }
                     choise = reader.nextInt();
                     switch (choise) {
                         case 1: {
-                            electronics.showCatalog();
+                            productCategory[choise - 1].showCatalog();
                             System.out.println("Choose the product:");
                             if (reader.hasNextInt()) {
                                 numberOfElement = reader.nextInt();
                             }
                             basketProduct1 = Arrays.copyOf(basketProduct, basketProduct.length + 1);
-                            basketProduct1[basketProduct.length] = electronics.getSpecificArrayElement(numberOfElement - 1);
+                            basketProduct1[basketProduct.length] = productCategory[choise - 1].getSpecificArrayElement(numberOfElement - 1);
                             basketProduct = Arrays.copyOf(basketProduct1, basketProduct1.length);
                             break;
                         }
                         case 2: {
-                            books.showCatalog();
+                            productCategory[choise - 1].showCatalog();
                             System.out.println("Choose the product:");
                             if (reader.hasNextInt()) {
                                 numberOfElement = reader.nextInt();
                             }
                             basketProduct1 = Arrays.copyOf(basketProduct, basketProduct.length + 1);
-                            basketProduct1[basketProduct.length] = books.getSpecificArrayElement(numberOfElement - 1);
+                            basketProduct1[basketProduct.length] = productCategory[choise - 1].getSpecificArrayElement(numberOfElement - 1);
                             basketProduct = Arrays.copyOf(basketProduct1, basketProduct1.length);
                             break;
                         }
@@ -124,4 +134,3 @@ public class Main {
     }
 
 }
-//}

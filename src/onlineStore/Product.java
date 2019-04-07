@@ -1,5 +1,7 @@
 package onlineStore;
 
+import java.util.Objects;
+
 public class Product {
     private String name;
     private double prise, rating;
@@ -34,7 +36,31 @@ public class Product {
         this.rating = rating;
     }
 
-    public void showProduct(){
-        System.out.println("Товар: " + this.getName() +  "\n Цена: " + this.getPrise() + " Рейтинг: " + this.getRating());
+    public void showProduct() {
+        System.out.println("Товар: " + this.getName() + "\n Цена: " + this.getPrise() + " Рейтинг: " + this.getRating());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.prise, prise) == 0 &&
+                Double.compare(product.rating, rating) == 0 &&
+                Objects.equals(name, product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, prise, rating);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", prise=" + prise +
+                ", rating=" + rating +
+                '}';
     }
 }

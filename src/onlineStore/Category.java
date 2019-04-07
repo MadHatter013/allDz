@@ -1,6 +1,7 @@
 package onlineStore;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Category {
     private String name;
@@ -29,13 +30,30 @@ public class Category {
 
     public void showCatalog() {
         for (int i = 0; i < product.length; i++) {
-            System.out.print(i+1 + ": ");
+            System.out.print(i + 1 + ": ");
             product[i].showProduct();
         }
+        System.out.println();
     }
 
-    public Product getSpecificArrayElement(int position){
+    public Product getSpecificArrayElement(int position) {
         return product[position];
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(name, category.name) &&
+                Arrays.equals(product, category.product);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name);
+        result = 31 * result + Arrays.hashCode(product);
+        return result;
     }
 
     @Override
