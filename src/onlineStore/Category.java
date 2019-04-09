@@ -29,6 +29,7 @@ public class Category {
     }
 
     public void showCatalog() {
+        System.out.println(name + ":");
         for (int i = 0; i < product.length; i++) {
             System.out.print(i + 1 + ": ");
             product[i].showProduct();

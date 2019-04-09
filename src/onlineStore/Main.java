@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 
 public class Main {
+    static final Scanner reader = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner reader = new Scanner(System.in);
+
         String login = null, password = null;
         Basket basket = new Basket();
-        Product[] basketProduct1 = new Product[0];
         Product[] basketProduct = new Product[0];
-        int numberOfElement = 0;
         Product[] productElectronics = {
                 new Product("Computer", 4000, 8.2),
                 new Product("Headphones", 800, 9.0),
@@ -28,9 +28,6 @@ public class Main {
 
         productCategory[0] = new Category("Electronics", productElectronics);
         productCategory[1] = new Category("Books", productBooks);
-//        Category electronics = new Category("Electronics", productElectronics);
-//        Category books = new Category("Electronics", productBooks);
-
 
         User user = new User("Sten", "Li");
         System.out.println("Enter login(Sten):");
@@ -61,25 +58,12 @@ public class Main {
                     for (int i = 0; i < productCategory.length; i++) {
                         productCategory[i].showCatalog();
                     }
-//                    electronics.showCatalog();
-//                    System.out.println();
-//                    books.showCatalog();
                     break;
                 }
                 case 2: {
                     System.out.println("Choose the catalog: \n 1) Electronics \n 2) Books");
                     choise = reader.nextInt();
-                    productCategory[choise-1].showCatalog();
-//                    switch (choise) {
-//                        case 1: {
-//                            electronics.showCatalog();
-//                            break;
-//                        }
-//                        case 2: {
-//                            books.showCatalog();
-//                            break;
-//                        }
-//                    }
+                    productCategory[choise - 1].showCatalog();
                     break;
                 }
                 case 3: {
@@ -91,24 +75,12 @@ public class Main {
                     switch (choise) {
                         case 1: {
                             productCategory[choise - 1].showCatalog();
-                            System.out.println("Choose the product:");
-                            if (reader.hasNextInt()) {
-                                numberOfElement = reader.nextInt();
-                            }
-                            basketProduct1 = Arrays.copyOf(basketProduct, basketProduct.length + 1);
-                            basketProduct1[basketProduct.length] = productCategory[choise - 1].getSpecificArrayElement(numberOfElement - 1);
-                            basketProduct = Arrays.copyOf(basketProduct1, basketProduct1.length);
+                            basketProduct = rewriteBasketCategories(basketProduct, productCategory[choise - 1]);
                             break;
                         }
                         case 2: {
                             productCategory[choise - 1].showCatalog();
-                            System.out.println("Choose the product:");
-                            if (reader.hasNextInt()) {
-                                numberOfElement = reader.nextInt();
-                            }
-                            basketProduct1 = Arrays.copyOf(basketProduct, basketProduct.length + 1);
-                            basketProduct1[basketProduct.length] = productCategory[choise - 1].getSpecificArrayElement(numberOfElement - 1);
-                            basketProduct = Arrays.copyOf(basketProduct1, basketProduct1.length);
+                            basketProduct = rewriteBasketCategories(basketProduct, productCategory[choise - 1]);
                             break;
                         }
                     }
@@ -116,7 +88,7 @@ public class Main {
                 }
                 case 4: {
                     System.out.println("Purchased products: ");
-                    basket.setPurchasedGoods(basketProduct1);
+                    basket.setPurchasedGoods(basketProduct);
                     user.setUserBasket(basket);
                     basket = user.getUserBasket();
                     basket.showPurchasedGoods();
@@ -127,10 +99,19 @@ public class Main {
                     break;
                 }
             }
-
         }
-
-
     }
 
+    public static Product[] rewriteBasketCategories(Product[] basketProduct, Category productCategory) {
+        Product[] basketProduct1 = new Product[0];
+        int numberOfElement = 0;
+        System.out.println("Choose the product:");
+        if (reader.hasNextInt()) {
+            numberOfElement = reader.nextInt();
+        }
+        basketProduct1 = Arrays.copyOf(basketProduct, basketProduct.length + 1);
+        basketProduct1[basketProduct.length] = productCategory.getSpecificArrayElement(numberOfElement);
+        basketProduct = Arrays.copyOf(basketProduct1, basketProduct1.length);
+        return basketProduct;
+    }
 }
