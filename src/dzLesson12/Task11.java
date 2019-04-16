@@ -1,10 +1,9 @@
 package dzLesson12;
 
-import java.util.HashMap;
 
 public class Task11 {
     private static int diffWords(String st) {
-        StringBuffer u = new StringBuffer();
+        StringBuilder u = new StringBuilder();
         String c;
         for (int i = 0; i < st.length(); i++) {
             c = String.valueOf(st.charAt(i));

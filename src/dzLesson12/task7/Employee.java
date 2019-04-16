@@ -1,10 +1,12 @@
 package dzLesson12.task7;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Employee {
     private String fullName;
     private double salary;
+    private LocalDate salaryDay;
 
     public Employee() {
     }
@@ -14,12 +16,26 @@ public class Employee {
         this.salary = salary;
     }
 
+    public Employee(String fullName, double salary, LocalDate salaryDay) {
+        this.fullName = fullName;
+        this.salary = salary;
+        this.salaryDay = salaryDay;
+    }
+
     public String getFullName() {
         return fullName;
     }
 
+    public LocalDate getSalaryDay() {
+        return salaryDay;
+    }
+
     public double getSalary() {
         return salary;
+    }
+
+    public void setSalaryDay(LocalDate salaryDay) {
+        this.salaryDay = salaryDay;
     }
 
     public void setFullName(String fullName) {

@@ -4,14 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Task13 {
-    private static void FindPalindrome(String[] str) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < str.length; i++) {
+    private static void findPalindrome(String[] str) {
+        StringBuilder stringBuilder;
+        for (String string : str) {
             Pattern pattern = Pattern.compile("[0-9]+");
-            Matcher matcher = pattern.matcher(str[i]);
+            Matcher matcher = pattern.matcher(string);
             if (matcher.matches()) {
-                stringBuilder = new StringBuilder(str[i]);
-                if (stringBuilder.toString().equals(stringBuilder.reverse().toString())) {
+                stringBuilder = new StringBuilder(string);
+                if (string.equals(stringBuilder.reverse().toString())) {
                     System.out.println(stringBuilder);
                 }
             }
@@ -23,6 +23,6 @@ public class Task13 {
         String[] a = str.split(" ");
 
         System.out.println("Все слова палиндромы(состоящие только из цифр): ");
-        FindPalindrome(a);
+        findPalindrome(a);
     }
 }

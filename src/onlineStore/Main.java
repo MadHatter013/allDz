@@ -25,7 +25,6 @@ public class Main {
         };
         Category[] productCategory = new Category[2];
 
-
         productCategory[0] = new Category("Electronics", productElectronics);
         productCategory[1] = new Category("Books", productBooks);
 
@@ -55,8 +54,8 @@ public class Main {
 
             switch (choise) {
                 case 1: {
-                    for (int i = 0; i < productCategory.length; i++) {
-                        productCategory[i].showCatalog();
+                    for (Category category : productCategory) {
+                        category.showCatalog();
                     }
                     break;
                 }
@@ -72,18 +71,7 @@ public class Main {
                         System.out.println(i + 1 + ") " + productCategory[i].getName());
                     }
                     choise = reader.nextInt();
-                    switch (choise) {
-                        case 1: {
-                            productCategory[choise - 1].showCatalog();
-                            basketProduct = rewriteBasketCategories(basketProduct, productCategory[choise - 1]);
-                            break;
-                        }
-                        case 2: {
-                            productCategory[choise - 1].showCatalog();
-                            basketProduct = rewriteBasketCategories(basketProduct, productCategory[choise - 1]);
-                            break;
-                        }
-                    }
+                    basketProduct = rewriteBasketCategories(basketProduct, productCategory[choise - 1]);
                     break;
                 }
                 case 4: {
@@ -103,15 +91,14 @@ public class Main {
     }
 
     public static Product[] rewriteBasketCategories(Product[] basketProduct, Category productCategory) {
-        Product[] basketProduct1 = new Product[0];
+        productCategory.showCatalog();
         int numberOfElement = 0;
         System.out.println("Choose the product:");
         if (reader.hasNextInt()) {
             numberOfElement = reader.nextInt();
         }
-        basketProduct1 = Arrays.copyOf(basketProduct, basketProduct.length + 1);
-        basketProduct1[basketProduct.length] = productCategory.getSpecificArrayElement(numberOfElement);
-        basketProduct = Arrays.copyOf(basketProduct1, basketProduct1.length);
+        basketProduct = Arrays.copyOf(basketProduct, basketProduct.length + 1);
+        basketProduct[basketProduct.length - 1] = productCategory.getSpecificArrayElement(numberOfElement - 1);
         return basketProduct;
     }
 }

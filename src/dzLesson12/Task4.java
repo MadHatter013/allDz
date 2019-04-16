@@ -6,6 +6,11 @@ public class Task4 {
         StringBuilder stringBuilder1 = new StringBuilder("Code");
         StringBuilder stringBuilder2 = new StringBuilder("Practice");
         StringBuilder stringBuilder3 = new StringBuilder("Pra");
+        twoMiddleCharacters(stringBuilder);
+        twoMiddleCharacters(stringBuilder1);
+        twoMiddleCharacters(stringBuilder2);
+        twoMiddleCharacters(stringBuilder3);
+
 
     }
 
