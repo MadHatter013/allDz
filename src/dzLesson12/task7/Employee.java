@@ -65,6 +65,7 @@ public class Employee {
         return "Employee{" +
                 "fullName='" + fullName + '\'' +
                 ", salary=" + salary +
+                ", salaryDay=" + salaryDay +
                 '}';
     }
 }

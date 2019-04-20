@@ -1,5 +1,6 @@
 package onlineStore;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class Main {
     static final Scanner reader = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        LocalDate purchaseDate = LocalDate.now();
         String login = null, password = null;
         Basket basket = new Basket();
         Product[] basketProduct = new Product[0];
@@ -79,7 +80,7 @@ public class Main {
                     basket.setPurchasedGoods(basketProduct);
                     user.setUserBasket(basket);
                     basket = user.getUserBasket();
-                    basket.showPurchasedGoods();
+                    basket.showPurchasedGoods(purchaseDate);
                     break;
                 }
                 case 5: {

@@ -1,6 +1,8 @@
 package onlineStore;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Formatter;
 
 public class Basket {
     private Product[] purchasedGoods;
@@ -21,7 +23,10 @@ public class Basket {
         this.purchasedGoods = purchasedGoods;
     }
 
-    public void showPurchasedGoods(){
+    public void showPurchasedGoods(LocalDate purchaseDate){
+        Formatter f = new Formatter();
+//        f.format("Date: %")
+        System.out.println("Date:        " + purchaseDate.getDayOfMonth() + "." + purchaseDate.getMonthValue() + "." + purchaseDate.getYear());
         for (Product p: purchasedGoods) {
             p.showProduct();
             System.out.println();
