@@ -2,6 +2,7 @@ package onlineStore;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -76,11 +77,10 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    System.out.println("Purchased products: ");
                     basket.setPurchasedGoods(basketProduct);
                     user.setUserBasket(basket);
                     basket = user.getUserBasket();
-                    basket.showPurchasedGoods(purchaseDate);
+                    basket.showPurchasedGoods(purchaseDate, Locale.getDefault());
                     break;
                 }
                 case 5: {
@@ -100,6 +100,7 @@ public class Main {
         }
         basketProduct = Arrays.copyOf(basketProduct, basketProduct.length + 1);
         basketProduct[basketProduct.length - 1] = productCategory.getSpecificArrayElement(numberOfElement - 1);
+        basketProduct[basketProduct.length-1].setNameCategory(productCategory.getName());
         return basketProduct;
     }
 }

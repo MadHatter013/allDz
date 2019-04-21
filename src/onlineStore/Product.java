@@ -1,15 +1,22 @@
 package onlineStore;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Product {
     private String name;
     private double prise, rating;
+    private String nameCategory;
 
     public Product(String name, double prise, double rating) {
         this.name = name;
         this.prise = prise;
         this.rating = rating;
+    }
+
+    public String getNameCategory() {
+        return nameCategory;
     }
 
     public String getName() {
@@ -34,6 +41,10 @@ public class Product {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 
     public void showProduct() {

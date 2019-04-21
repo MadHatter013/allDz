@@ -1,8 +1,10 @@
 package onlineStore;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Formatter;
+import java.util.Locale;
 
 public class Basket {
     private Product[] purchasedGoods;
@@ -23,14 +25,34 @@ public class Basket {
         this.purchasedGoods = purchasedGoods;
     }
 
-    public void showPurchasedGoods(LocalDate purchaseDate){
+    public void showPurchasedGoods(LocalDate purchaseDate) {
         Formatter f = new Formatter();
-//        f.format("Date: %")
-        System.out.println("Date:        " + purchaseDate.getDayOfMonth() + "." + purchaseDate.getMonthValue() + "." + purchaseDate.getYear());
-        for (Product p: purchasedGoods) {
+        f.format("Date: %1s.%s.%3s", purchaseDate.getDayOfMonth(), purchaseDate.getMonthValue(), purchaseDate.getYear());
+        System.out.println(f);
+        for (Product p : purchasedGoods) {
             p.showProduct();
             System.out.println();
         }
+    }
+
+    public void showPurchasedGoods(LocalDate purchaseDate, Locale locale) {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        System.out.printf("Date: %26s.%s.%s \n \n", purchaseDate.getDayOfMonth(), purchaseDate.getMonthValue(), purchaseDate.getYear());
+        System.out.printf("%s     %10s    %12s \n", "Products", "Category", "Price");
+        drawLine();
+        for (Product p : purchasedGoods) {
+            int i = p.getNameCategory().length() + 10 - p.getName().length();
+            String s = nf.format(p.getPrise());
+            System.out.printf("%s     %" + i + "s    %" + (20 - p.getNameCategory().length()) + "s \n", p.getName(), p.getNameCategory(), s);
+        }
+        drawLine();
+    }
+
+    private void drawLine() {
+        for (int i = 0; i < 19; i++) {
+            System.out.print("_ ");
+        }
+        System.out.println("_");
     }
 
     @Override
