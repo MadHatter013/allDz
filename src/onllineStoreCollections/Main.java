@@ -49,7 +49,8 @@ public class Main {
             System.out.println("3) Selection of goods in the basket;");
             System.out.println("4) The purchase of goods in the basket;");
             System.out.println("5) View the catalog sorted by price;");
-            System.out.println("6) Disable application.");
+            System.out.println("6) View the catalog sorted by rating;");
+            System.out.println("7) Disable application.");
             if (reader.hasNextInt()) {
                 choice = reader.nextInt();
             }
@@ -88,6 +89,10 @@ public class Main {
                     break;
                 }
                 case 6: {
+                    productCategory = sortedByRating(productCategory);
+                    break;
+                }
+                case 7: {
                     b = !b;
                     break;
                 }
@@ -108,7 +113,7 @@ public class Main {
         return basketProduct;
     }
 
-    public static LinkedList<Category>  sortedByPrice(LinkedList<Category> productCategory) {
+    public static LinkedList<Category>  sortedByPrice (LinkedList<Category> productCategory) {
         int numberOfElement = 0;
         System.out.println("Choose the catalog: \n 1) Electronics \n 2) Books");
         if (reader.hasNextInt()) {
@@ -123,6 +128,35 @@ public class Main {
             for (int i = 0; i < productArray.length - 1; i++) {
                 Product productRewrite;
                 if (productArray[i].getPrise() > productArray[i + 1].getPrise()) {
+                    isSorted = false;
+
+                    productRewrite = productArray[i];
+                    productArray[i] = productArray[i + 1];
+                    productArray[i + 1] = productRewrite;
+                }
+            }
+        }
+        list = new LinkedList<Product>(Arrays.asList(productArray));
+        category.setProduct(list);
+        productCategory.set(numberOfElement-1, category);
+        return productCategory;
+    }
+
+    public static LinkedList<Category>  sortedByRating (LinkedList<Category> productCategory) {
+        int numberOfElement = 0;
+        System.out.println("Choose the catalog: \n 1) Electronics \n 2) Books");
+        if (reader.hasNextInt()) {
+            numberOfElement = reader.nextInt();
+        }
+        Category category = productCategory.get(numberOfElement-1);
+        LinkedList<Product> list = category.getProduct();
+        Product[] productArray = list.toArray(new Product[list.size()]);
+        boolean isSorted = false;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < productArray.length - 1; i++) {
+                Product productRewrite;
+                if (productArray[i].getRating() > productArray[i + 1].getRating()) {
                     isSorted = false;
 
                     productRewrite = productArray[i];
