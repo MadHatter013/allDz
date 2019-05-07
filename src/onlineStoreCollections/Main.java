@@ -1,5 +1,6 @@
-package onllineStoreCollections;
+package onlineStoreCollections;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -82,6 +83,7 @@ public class Main {
                     user.setUserBasket(basket);
                     basket = user.getUserBasket();
                     basket.showPurchasedGoods(purchaseDate, Locale.getDefault());
+                    writeReport(basket);
                     break;
                 }
                 case 5: {
@@ -169,5 +171,15 @@ public class Main {
         category.setProduct(list);
         productCategory.set(numberOfElement-1, category);
         return productCategory;
+    }
+
+    public static void writeReport(Basket basket) {
+        try(PrintWriter printWriter = new PrintWriter("C:\\Users\\SERHII\\IdeaProjects\\allDz\\src\\onlineStoreCollections\\PurchaseReport.txt")){
+            for (Product p: basket.getPurchasedGoods()) {
+                printWriter.write(p.showProduct() + "\n");
+            }
+        }catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

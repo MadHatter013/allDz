@@ -1,4 +1,4 @@
-package onllineStoreCollections;
+package onlineStoreCollections;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;

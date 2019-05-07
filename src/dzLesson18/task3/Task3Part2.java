@@ -1,20 +1,17 @@
 package dzLesson18.task3;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
-public class Task3 {
+public class Task3Part2 {
     public static void main(String[] args) {
         char[] array = new char[50];
         File inputFile = new File("E:\\rewrite\\A.txt");
         File outputFile = new File("E:\\rewrite\\B.txt");
-        try (FileWriter fileWriter = new FileWriter(outputFile);
-             FileReader fileReader = new FileReader(inputFile)) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile));
+             BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
 
-            int size = fileReader.read(array);
-            fileWriter.write(array);
+            int size = br.read(array);
+            bw.write(array);
             for (int i = 0; i < size; i++) {
                 System.out.print(array[i]);
             }

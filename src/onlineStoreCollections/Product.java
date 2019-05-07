@@ -1,4 +1,4 @@
-package onllineStoreCollections;
+package onlineStoreCollections;
 
 import java.util.Objects;
 
@@ -45,8 +45,10 @@ public class Product {
         this.nameCategory = nameCategory;
     }
 
-    public void showProduct() {
+    public String showProduct() {
+        String s = "Товар: " + this.getName() + "\n Цена: " + this.getPrise() + " Рейтинг: " + this.getRating();
         System.out.println("Товар: " + this.getName() + "\n Цена: " + this.getPrise() + " Рейтинг: " + this.getRating());
+        return s;
     }
 
     @Override
