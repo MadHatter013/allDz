@@ -1,4 +1,5 @@
-package onlineStoreCollections;
+package onlineStoreWithDatabase;
+
 
 import java.util.Objects;
 
@@ -6,6 +7,9 @@ public class Product {
     private String name;
     private double prise, rating;
     private String nameCategory;
+
+    public Product() {
+    }
 
     public Product(String name, double prise, double rating) {
         this.name = name;
@@ -64,7 +68,8 @@ public class Product {
     @Override
     public String toString() {
         String s = "Товар: " + this.getName() + "\n Цена: " + this.getPrise() + " Рейтинг: " + this.getRating();
-        System.out.println(s);
+        System.out.printf("%-20s%-20.2f%-20.2f%n",  this.getName(),this.getPrise(), this.getRating());
+//        System.out.println(s);
         return s;
     }
 }

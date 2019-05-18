@@ -1,4 +1,4 @@
-package onlineStoreCollections;
+package onlineStoreWithDatabase;
 
 import java.util.List;
 import java.util.Objects;
@@ -30,11 +30,13 @@ public class Category {
 
     public void showCatalog() {
         System.out.println(name + ":");
+        System.out.printf("%s     %19s    %17s \n", "Name", "Price", "Rating");
+        System.out.println("------------------------------------------------------------------");
         for (int i = 0; i < product.size(); i++) {
             System.out.print(i + 1 + ": ");
             product.get(i).toString();
         }
-        System.out.println();
+        System.out.println("------------------------------------------------------------------");
     }
 
     public Product getSpecificArrayElement(int position) {

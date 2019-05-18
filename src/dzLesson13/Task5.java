@@ -9,7 +9,7 @@ public class Task5 {
 
     private static void getMetaInfo(Class metaClass){
         System.out.println("Super Class: " + metaClass.getSuperclass());
-        System.out.println("In the package: " + metaClass.getPackageName());
+//        System.out.println("In the package: " + metaClass.getPackageName());
         System.out.println("Class Modifier: " + metaClass.getModifiers());
         System.out.println();
 

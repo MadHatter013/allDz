@@ -1,4 +1,4 @@
-package onlineStoreCollections;
+package onlineStoreWithDatabase;
 
 
 import java.util.List;

@@ -1,5 +1,4 @@
-package onlineStoreCollections;
-
+package onlineStoreWithDatabase;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
@@ -56,7 +55,7 @@ public class Basket {
     }
 
     public void writePurchasedGoods(LocalDate purchaseDate, Locale locale) {
-        try (PrintWriter printWriter = new PrintWriter("C:\\Users\\SERHII\\IdeaProjects\\allDz\\src\\onlineStoreCollections\\PurchaseReport.txt")) {
+        try (PrintWriter printWriter = new PrintWriter("C:\\Users\\SERHII\\IdeaProjects\\allDz\\src\\onlineStoreWithDatabase\\PurchaseReport.txt")) {
             NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
             printWriter.printf("Date: %26s.%s.%s \n \n", purchaseDate.getDayOfMonth(), purchaseDate.getMonthValue(), purchaseDate.getYear());
             printWriter.println();

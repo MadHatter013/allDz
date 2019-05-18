@@ -1,9 +1,13 @@
-package onlineStoreCollections;
+package onlineStoreWithDatabase;
+
 
 import java.io.*;
+import java.sql.*;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.*;
+
+import static onlineStoreWithDatabase.ConnectionData.*;
 
 public class Main {
     private static final Scanner reader = new Scanner(System.in);
@@ -14,17 +18,9 @@ public class Main {
         Basket basket = new Basket();
         List<Product> basketProduct = new LinkedList<>();
 
-        List<Product> productElectronics = new LinkedList<>();
-        productElectronics.add(new Product("Computer", 4000, 8.2));
-        productElectronics.add(new Product("AAA", 4000, 8.2));
-        productElectronics.add(new Product("Headphones", 800, 9.0));
-        productElectronics.add(new Product("Power bank", 200, 4.2));
-        productElectronics.add(new Product("Charger", 360, 0.0));
+        List<Product> productElectronics = fillTheList("productelectronics");
 
-        List<Product> productBooks = new LinkedList<>();
-        productBooks.add(new Product("History", 320, 9.0));
-        productBooks.add(new Product("Biology", 120, 4.0));
-        productBooks.add(new Product("Economics", 200, 8.3));
+        List<Product> productBooks = fillTheList("productbooks");
 
         List<Category> productCategory = new LinkedList<>();
 
@@ -174,4 +170,27 @@ public class Main {
         return productCategory;
     }
 
+    public static List<Product> fillTheList(String s) {
+        List<Product> list = new LinkedList<>();
+
+        String QUERY = "SELECT * FROM ";
+        QUERY = QUERY + s;
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(QUERY);
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setName(resultSet.getString("product_name"));
+                product.setPrise(resultSet.getDouble("price"));
+                product.setRating(resultSet.getDouble("rating"));
+                list.add(product);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        return list;
+    }
 }
