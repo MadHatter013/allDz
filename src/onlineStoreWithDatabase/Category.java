@@ -4,12 +4,21 @@ import java.util.List;
 import java.util.Objects;
 
 public class Category {
-    private String name;
+    private String name, nameDatabase;
     List<Product> product;
 
-    public Category(String name, List<Product> product) {
+    public Category(String name, String nameDatabase, List<Product> product) {
         this.name = name;
         this.product = product;
+        this.nameDatabase = nameDatabase;
+    }
+
+    public String getNameDatabase() {
+        return nameDatabase;
+    }
+
+    public void setNameDatabase(String nameDatabase) {
+        this.nameDatabase = nameDatabase;
     }
 
     public String getName() {

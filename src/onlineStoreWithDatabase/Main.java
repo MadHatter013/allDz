@@ -1,16 +1,16 @@
 package onlineStoreWithDatabase;
 
 
-import java.io.*;
 import java.sql.*;
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.*;
 
 import static onlineStoreWithDatabase.ConnectionData.*;
 
+
 public class Main {
     private static final Scanner reader = new Scanner(System.in);
+    private static final QueryDAO dao = new QueryDAO();
 
     public static void main(String[] args) {
         LocalDate purchaseDate = LocalDate.now();
@@ -18,14 +18,14 @@ public class Main {
         Basket basket = new Basket();
         List<Product> basketProduct = new LinkedList<>();
 
-        List<Product> productElectronics = fillTheList("productelectronics");
+        List<Product> productElectronics = dao.findAll("productelectronics");
 
-        List<Product> productBooks = fillTheList("productbooks");
+        List<Product> productBooks = dao.findAll("productbooks");
 
         List<Category> productCategory = new LinkedList<>();
 
-        productCategory.add(new Category("Electronics", productElectronics));
-        productCategory.add(new Category("Books", productBooks));
+        productCategory.add(new Category("Electronics", "productelectronics", productElectronics));
+        productCategory.add(new Category("Books", "productbooks", productBooks));
 
         User user = new User("Sten", "Li");
         System.out.println("Enter login(Sten):");
@@ -92,6 +92,7 @@ public class Main {
                     break;
                 }
                 case 7: {
+                    dao.cleatBasket();
                     b = !b;
                     break;
                 }
@@ -106,7 +107,10 @@ public class Main {
         if (reader.hasNextInt()) {
             numberOfElement = reader.nextInt();
         }
-        Product p = productCategory.getSpecificArrayElement(numberOfElement - 1);
+
+        Product p = dao.findEntityById(productCategory.getNameDatabase(), numberOfElement);
+        dao.addProductToBasket(productCategory.getNameDatabase(), numberOfElement);
+
         p.setNameCategory(productCategory.getName());
         basketProduct.add(p);
         return basketProduct;
@@ -170,27 +174,5 @@ public class Main {
         return productCategory;
     }
 
-    public static List<Product> fillTheList(String s) {
-        List<Product> list = new LinkedList<>();
 
-        String QUERY = "SELECT * FROM ";
-        QUERY = QUERY + s;
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(QUERY);
-            while (resultSet.next()) {
-                Product product = new Product();
-                product.setName(resultSet.getString("product_name"));
-                product.setPrise(resultSet.getDouble("price"));
-                product.setRating(resultSet.getDouble("rating"));
-                list.add(product);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-        return list;
-    }
 }

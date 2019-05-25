@@ -1,5 +1,7 @@
 package onlineStoreWithDatabase;
 
+
+
 public class ConnectionData {
     public static final String DRIVER = "com.mysql.jdbc.Driver";
     public static final String DB = "storedatabase";
